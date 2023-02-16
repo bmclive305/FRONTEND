@@ -1,0 +1,38 @@
+.sideCardContainer {
+    width: 20%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #999898;
+}
+
+.cardButton {
+    background-color: #444444;
+    color: #fff;
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    transition: font-size 0.3s ease-in-out;
+}
+
+.cardButton:hover {
+    background-color: #b1b1b1;
+    color: #01189e;
+    font-size: 23px;
+}
+
+.selected {
+    background-color: #5064d3;
+    color: white;
+}
