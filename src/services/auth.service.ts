@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://api.bmcsecure.pro/api/auth/";
+const API_URL = "https://api.bmclive.app/auth/";
 
 class AuthService {
   login(username: string, password: string) {
