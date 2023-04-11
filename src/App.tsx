@@ -82,7 +82,7 @@ class App extends Component<Props, State> {
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                  Mod
                 </Link>
               </li>
             )}
@@ -90,7 +90,7 @@ class App extends Component<Props, State> {
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                  Admin
                 </Link>
               </li>
             )}
