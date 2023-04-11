@@ -1,7 +1,7 @@
 import axios from 'axios';
 //import authHeader from './auth-header';
 
-const API_URL = 'https://www.bmclive.app/test/';
+const API_URL = 'https://api.bmclive.app/test/';
 
 class UserService {
   getPublicContent() {
