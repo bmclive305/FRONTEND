@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import AuthService from "./services/auth.service";
@@ -15,6 +14,7 @@ import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/board-admin.component";
 
 import EventBus from "./common/EventBus";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 
 type Props = {};
 
@@ -68,7 +68,124 @@ class App extends Component<Props, State> {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+<Navbar
+className=""
+  fluid={true}
+  rounded={true}
+>
+  <Navbar.Brand href={"/"}>
+    <img
+      src="/logo.png"
+      className="mr-3 h-12"
+      alt="BMC Logo"
+    />
+  </Navbar.Brand>
+  <div className="flex md:order-2">
+  {currentUser && (
+    <Dropdown
+    arrowIcon={false}
+    inline={true}
+    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+  >
+    <Dropdown.Header>
+      <span className="block text-sm">
+        {currentUser.username}
+      </span>
+      <span className="block truncate text-sm font-medium">
+        {currentUser.email}
+      </span>
+    </Dropdown.Header>
+    <Dropdown.Item>
+      <a href={"/profile"} >
+        Profile
+      </a>
+    </Dropdown.Item>
+    <Dropdown.Divider />
+    <Dropdown.Item>
+      <a href="/login" className="nav-link" onClick={this.logOut}>
+      Sign out
+      </a>
+    </Dropdown.Item>
+  </Dropdown>
+  )}
+  
+  {!currentUser && (
+    <div className="self-center flex dark:text-white">
+    <a
+    href={"/login"}
+  >
+    Login/Register
+  </a>     
+    </div>
+
+    // <Navbar.Collapse>
+    //   <Navbar.Link
+    //     href={"/login"}
+    //   >
+    //     Login
+    //   </Navbar.Link>
+    //   <Navbar.Link
+    //     href={"/register"}
+    //   >
+    //     Register
+    //   </Navbar.Link>      
+    // </Navbar.Collapse>
+
+  )}
+    
+    <Navbar.Toggle />
+  </div>
+  <Navbar.Collapse>
+    <Navbar.Link
+      href={"/home"}
+      active={true}
+    >
+      Home
+    </Navbar.Link>
+    
+    {showModeratorBoard && (
+      <Navbar.Link href={"/mod"}>
+        Mod
+      </Navbar.Link> 
+        )}
+
+    {showAdminBoard && (
+      <Navbar.Link href={"/admin"}>
+        Admin
+      </Navbar.Link> 
+        )}
+
+    {currentUser && (
+      <Navbar.Link href={"/user"}>
+        User
+      </Navbar.Link>
+        )}
+  </Navbar.Collapse>
+</Navbar>
+        
+
+        <div className="container mt-3">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/user" element={<BoardUser />} />
+            <Route path="/mod" element={<BoardModerator />} />
+            <Route path="/admin" element={<BoardAdmin />} />
+          </Routes>
+        </div>
+
+        { /*<AuthVerify logOut={this.logOut}/> */}
+      </div>
+    );
+  }
+}
+
+export default App;
+
+{/* <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
             BMC
           </Link>
@@ -132,25 +249,4 @@ class App extends Component<Props, State> {
               </li>
             </div>
           )}
-        </nav>
-
-        <div className="container mt-3">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<BoardUser />} />
-            <Route path="/mod" element={<BoardModerator />} />
-            <Route path="/admin" element={<BoardAdmin />} />
-          </Routes>
-        </div>
-
-        { /*<AuthVerify logOut={this.logOut}/> */}
-      </div>
-    );
-  }
-}
-
-export default App;
+        </nav> */}
